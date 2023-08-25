@@ -175,7 +175,7 @@ fun WeatherScreenContent(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.height(16.dp))
 
 
-            for (i in 0 until 7) {
+            for (i in 0 until 6) {
 
                 Row(
                     modifier = Modifier
