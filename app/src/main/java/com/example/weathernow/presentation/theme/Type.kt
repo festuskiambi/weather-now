@@ -1,9 +1,11 @@
 package com.example.weathernow.presentation.theme
 
 import androidx.compose.material3.Typography
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.unit.sp
 
 // Set of Material typography styles to start with
@@ -31,4 +33,14 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     )
     */
+)
+
+val superscriptTitle = SpanStyle(
+    baselineShift = BaselineShift.Superscript,
+    fontSize = 36.sp,
+)
+
+val superscriptBody = SpanStyle(
+    baselineShift = BaselineShift.Superscript,
+    fontSize = 22.sp,
 )
