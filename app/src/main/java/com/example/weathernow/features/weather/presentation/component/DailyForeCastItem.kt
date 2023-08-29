@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -18,13 +17,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import com.example.weathernow.R
+import com.example.weathernow.features.weather.domain.model.Weather
 import com.example.weathernow.presentation.theme.superscriptBody
 
 @Composable
- fun DailyForecastItem() {
+fun DailyForecastItem(
+    modifier: Modifier = Modifier,
+    weather: Weather,
+) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(50.dp)
     ) {
@@ -49,7 +51,7 @@ import com.example.weathernow.presentation.theme.superscriptBody
         ) {
 
             Image(
-                painter = painterResource(id = R.drawable.rain_3x),
+                painter = painterResource(id = weather.weatherType.iconRes),
                 contentDescription = null,
                 modifier = Modifier
                     .size(22.dp)
@@ -67,7 +69,7 @@ import com.example.weathernow.presentation.theme.superscriptBody
                 style = MaterialTheme.typography.bodyLarge,
                 color = Color.White,
                 text = buildAnnotatedString {
-                    append("18")
+                    append(weather.maxTemp.toString())
                     withStyle(superscriptBody) {
                         append("°")
                     }

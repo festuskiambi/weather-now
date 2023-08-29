@@ -40,6 +40,7 @@ import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import com.example.weathernow.R
 import com.example.weathernow.features.weather.domain.model.Weather
 import com.example.weathernow.features.weather.domain.model.WeatherType
+import com.example.weathernow.features.weather.presentation.component.CurrentDayForecastItem
 import com.example.weathernow.features.weather.presentation.component.DailyForecastItem
 import com.example.weathernow.presentation.theme.WeatherNowTheme
 import com.example.weathernow.presentation.theme.superscriptBody
@@ -76,7 +77,7 @@ fun WeatherScreenContent(
     val fiveDayForecast = uiState.fiveDayForecast
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(color = colorResource(id = backgroundColor))
     ) {
@@ -137,7 +138,7 @@ private fun CurrentWeatherContent(
 
 @Composable
 private fun ForecastWeatherContent(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     fiveDayForecast: List<Weather>,
     currentWeather: Weather?,
 ) {
@@ -165,7 +166,6 @@ private fun ForecastWeatherContent(
 
 }
 
-
 @Composable
 private fun CurrentDayForecast(
     modifier: Modifier = Modifier,
@@ -177,73 +177,13 @@ private fun CurrentDayForecast(
             .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
-                text = buildAnnotatedString {
-                    append(currentWeather?.minTemp.toString())
-                    withStyle(superscriptBody) {
-                        append("°")
-                    }
-                },
-            )
-            Text(
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
-                text = "min"
-            )
-        }
+        CurrentDayForecastItem(currentWeather?.minTemp, "min")
 
+        CurrentDayForecastItem(currentWeather?.minTemp, "current")
 
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-
-        ) {
-            Text(
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
-                text = buildAnnotatedString {
-                    append(currentWeather?.currTemp.toString())
-                    withStyle(superscriptBody) {
-                        append("°")
-                    }
-                },
-            )
-            Text(
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
-                text = "current"
-            )
-        }
-
-
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-
-        ) {
-            Text(
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
-                text = buildAnnotatedString {
-                    append(currentWeather?.maxTemp.toString())
-                    withStyle(superscriptBody) {
-                        append("°")
-                    }
-                },
-            )
-            Text(
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
-                text = "max"
-            )
-        }
-
+        CurrentDayForecastItem(currentWeather?.minTemp,  "max")
     }
 }
-
 
 @Preview(name = "phone sunny", device = "spec:shape=Normal,width=360,height=640,unit=dp,dpi=480")
 @Composable
@@ -307,7 +247,7 @@ fun CloudyPreview() {
 
 @Preview(name = "phone rainy", device = "spec:shape=Normal,width=360,height=640,unit=dp,dpi=480")
 @Composable
-fun WeatherScreenContentPreview() {
+fun RainPreview() {
     Surface {
         WeatherNowTheme {
             WeatherScreenContent(
