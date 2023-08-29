@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
     implementation(platform(libs.compose.bom))
+    implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.ui)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
@@ -66,6 +67,7 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android.core)
+    implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
 
     testImplementation(libs.junit)
