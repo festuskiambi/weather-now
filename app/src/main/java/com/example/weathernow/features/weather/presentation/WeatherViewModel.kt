@@ -26,7 +26,7 @@ class WeatherViewModel @Inject constructor(
 
         ) { isLoading, weatherAsync ->
         when (weatherAsync) {
-            Async.Loading -> WeatherUiState(isLoading = true)
+            is Async.Loading -> WeatherUiState(isLoading = true)
             is Async.Success -> {
                 WeatherUiState(
                     isLoading = isLoading,

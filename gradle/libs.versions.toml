@@ -10,6 +10,8 @@ core-ktx = "1.10.1"
 espresso-core = "3.5.1"
 hilt = "2.45"
 junit = "4.13.2"
+junitJupiter = "5.8.1"
+kotlinxCoroutines = "1.7.1"
 ksp = "1.8.20-1.0.11"
 lifecycle-runtime-ktx = "2.6.1"
 minSdk = "26"
@@ -27,6 +29,8 @@ hilt-android-core = { group = "com.google.dagger", name = "hilt-android", versio
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiter" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
 ui = { group = "androidx.compose.ui", name = "ui" }
