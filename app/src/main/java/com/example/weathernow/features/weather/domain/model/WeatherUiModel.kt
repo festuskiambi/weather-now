@@ -1,9 +1,9 @@
 package com.example.weathernow.features.weather.domain.model
 
 data class Weather(
-    val currTemp: Int,
-    val date: String,
-    val minTemp: Int,
-    val maxTemp: Int,
-    val weatherType: WeatherType,
+    val currTemp: Int? = null ,
+    val date: String? = null,
+    val minTemp: Int? = null,
+    val maxTemp: Int? = null,
+    val weatherType: WeatherType?= null,
 )

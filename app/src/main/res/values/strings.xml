@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WeatherNow</string>
+    <string name="permission_required_message">"Weathernow requires location permission in order to serve you best, please grant them in the settings. Thank "</string>
 </resources>

@@ -49,13 +49,14 @@ fun DailyForecastItem(
             verticalArrangement = Arrangement.Top
 
         ) {
-
-            Image(
-                painter = painterResource(id = weather.weatherType.iconRes),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(22.dp)
-            )
+            weather.weatherType?.let {
+                Image(
+                    painter = painterResource(id = it.iconRes),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(22.dp)
+                )
+            }
         }
         Column(
             modifier = Modifier

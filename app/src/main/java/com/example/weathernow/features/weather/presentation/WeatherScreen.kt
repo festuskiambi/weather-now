@@ -43,7 +43,6 @@ import com.example.weathernow.features.weather.domain.model.WeatherType
 import com.example.weathernow.features.weather.presentation.component.CurrentDayForecastItem
 import com.example.weathernow.features.weather.presentation.component.DailyForecastItem
 import com.example.weathernow.presentation.theme.WeatherNowTheme
-import com.example.weathernow.presentation.theme.superscriptBody
 import com.example.weathernow.presentation.theme.superscriptTitle
 
 @Composable
@@ -103,34 +102,36 @@ private fun CurrentWeatherContent(
             .height(330.dp)
     ) {
         currentWeather?.let { weather ->
-            Image(
-                painter = painterResource(weather.weatherType.backgroundRes),
-                modifier = Modifier.fillMaxSize(),
-                contentDescription = "Background Image",
-                contentScale = ContentScale.FillBounds
-            )
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 50.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Text(
-                    style = MaterialTheme.typography.displayLarge,
-                    color = Color.White,
-                    text = buildAnnotatedString {
-                        append(weather.currTemp.toString())
-                        withStyle(superscriptTitle) {
-                            append("°")
-                        }
-                    },
+            weather.weatherType?.let { weatherType ->
+                Image(
+                    painter = painterResource(weatherType.backgroundRes),
+                    modifier = Modifier.fillMaxSize(),
+                    contentDescription = "Background Image",
+                    contentScale = ContentScale.FillBounds
                 )
-                Text(
-                    text = weather.weatherType.weatherDesc,
-                    style = MaterialTheme.typography.titleLarge,
-                    color = Color.White,
-                )
+                
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 50.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Text(
+                        style = MaterialTheme.typography.displayLarge,
+                        color = Color.White,
+                        text = buildAnnotatedString {
+                            append(weather.currTemp.toString())
+                            withStyle(superscriptTitle) {
+                                append("°")
+                            }
+                        },
+                    )
+                    Text(
+                        text = weatherType.weatherDesc,
+                        style = MaterialTheme.typography.titleLarge,
+                        color = Color.White,
+                    )
+                }
             }
         }
     }
@@ -181,7 +182,7 @@ private fun CurrentDayForecast(
 
         CurrentDayForecastItem(currentWeather?.minTemp, "current")
 
-        CurrentDayForecastItem(currentWeather?.minTemp,  "max")
+        CurrentDayForecastItem(currentWeather?.minTemp, "max")
     }
 }
 
