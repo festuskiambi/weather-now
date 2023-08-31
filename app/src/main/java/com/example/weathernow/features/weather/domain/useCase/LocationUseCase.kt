@@ -4,6 +4,8 @@ import com.example.weathernow.features.weather.domain.repository.LocationReposit
 import javax.inject.Inject
 
 class LocationUseCase @Inject constructor(
-   private val locationRepository: LocationRepository,
+    private val locationRepository: LocationRepository,
 ) {
+    suspend operator fun invoke() =
+        locationRepository.getCurrentCoordinate()
 }

@@ -1,11 +1,11 @@
 package com.example.weathernow.features.weather.presentation
 
+import com.example.weathernow.features.weather.domain.model.AllWeather
 import com.example.weathernow.features.weather.domain.model.Weather
-import com.example.weathernow.util.UiText
+import com.example.weathernow.util.UserMessage
 
 data class WeatherUiState(
+    val allWeather: AllWeather? = null,
     val isLoading: Boolean? = false,
-    val currentWeather: Weather? = null,
-    val userMessage : UiText? = null,
-    val fiveDayForecast: List<Weather> = emptyList(),
+    val userMessage : UserMessage? = null,
 )

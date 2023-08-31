@@ -38,6 +38,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import com.example.weathernow.R
+import com.example.weathernow.features.weather.domain.model.AllWeather
 import com.example.weathernow.features.weather.domain.model.Weather
 import com.example.weathernow.features.weather.domain.model.WeatherType
 import com.example.weathernow.features.weather.presentation.component.CurrentDayForecastItem
@@ -71,9 +72,9 @@ fun WeatherScreenContent(
     modifier: Modifier = Modifier,
     uiState: WeatherUiState,
 ) {
-    val currentWeather = uiState.currentWeather
+    val currentWeather = uiState.allWeather?.currentWeather
     val backgroundColor = currentWeather?.weatherType?.backgroundColor ?: R.color.clear
-    val fiveDayForecast = uiState.fiveDayForecast
+    val fiveDayForecast = uiState.allWeather?.fiveDayForecast
 
     Column(
         modifier = modifier
@@ -109,7 +110,7 @@ private fun CurrentWeatherContent(
                     contentDescription = "Background Image",
                     contentScale = ContentScale.FillBounds
                 )
-                
+
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -140,7 +141,7 @@ private fun CurrentWeatherContent(
 @Composable
 private fun ForecastWeatherContent(
     modifier: Modifier = Modifier,
-    fiveDayForecast: List<Weather>,
+    fiveDayForecast: List<Weather>?,
     currentWeather: Weather?,
 ) {
     LazyColumn(
@@ -160,8 +161,10 @@ private fun ForecastWeatherContent(
         item {
             Spacer(modifier = Modifier.height(16.dp))
         }
-        items(fiveDayForecast) { weather ->
-            DailyForecastItem(weather = weather)
+        fiveDayForecast?.let {
+            items(it) { weather ->
+                DailyForecastItem(weather = weather)
+            }
         }
     }
 
@@ -194,20 +197,22 @@ fun SunnyPreview() {
             WeatherScreenContent(
                 uiState = WeatherUiState(
                     isLoading = false,
-                    currentWeather = Weather(
-                        currTemp = 24,
-                        date = "29-08-2023",
-                        minTemp = 16,
-                        maxTemp = 27,
-                        weatherType = WeatherType.Clear
-                    ),
-                    fiveDayForecast = listOf(
-                        Weather(
+                    allWeather = AllWeather(
+                        currentWeather = Weather(
                             currTemp = 24,
                             date = "29-08-2023",
                             minTemp = 16,
                             maxTemp = 27,
                             weatherType = WeatherType.Clear
+                        ),
+                        fiveDayForecast = listOf(
+                            Weather(
+                                currTemp = 24,
+                                date = "29-08-2023",
+                                minTemp = 16,
+                                maxTemp = 27,
+                                weatherType = WeatherType.Clear
+                            )
                         )
                     )
                 )
@@ -224,20 +229,22 @@ fun CloudyPreview() {
             WeatherScreenContent(
                 uiState = WeatherUiState(
                     isLoading = false,
-                    currentWeather = Weather(
-                        currTemp = 24,
-                        date = "29-08-2023",
-                        minTemp = 16,
-                        maxTemp = 27,
-                        weatherType = WeatherType.Cloudy
-                    ),
-                    fiveDayForecast = listOf(
-                        Weather(
+                    allWeather = AllWeather(
+                        currentWeather = Weather(
                             currTemp = 24,
                             date = "29-08-2023",
                             minTemp = 16,
                             maxTemp = 27,
                             weatherType = WeatherType.Cloudy
+                        ),
+                        fiveDayForecast = listOf(
+                            Weather(
+                                currTemp = 24,
+                                date = "29-08-2023",
+                                minTemp = 16,
+                                maxTemp = 27,
+                                weatherType = WeatherType.Cloudy
+                            )
                         )
                     )
                 )
@@ -254,20 +261,22 @@ fun RainPreview() {
             WeatherScreenContent(
                 uiState = WeatherUiState(
                     isLoading = false,
-                    currentWeather = Weather(
-                        currTemp = 24,
-                        date = "29-08-2023",
-                        minTemp = 16,
-                        maxTemp = 27,
-                        weatherType = WeatherType.Rain
-                    ),
-                    fiveDayForecast = listOf(
-                        Weather(
+                    allWeather = AllWeather(
+                        currentWeather = Weather(
                             currTemp = 24,
                             date = "29-08-2023",
                             minTemp = 16,
                             maxTemp = 27,
                             weatherType = WeatherType.Rain
+                        ),
+                        fiveDayForecast = listOf(
+                            Weather(
+                                currTemp = 24,
+                                date = "29-08-2023",
+                                minTemp = 16,
+                                maxTemp = 27,
+                                weatherType = WeatherType.Rain
+                            )
                         )
                     )
                 )

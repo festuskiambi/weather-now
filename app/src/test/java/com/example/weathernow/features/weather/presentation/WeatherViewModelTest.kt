@@ -2,9 +2,14 @@ package com.example.weathernow.features.weather.presentation
 
 import CoroutineRule
 import app.cash.turbine.test
-import com.example.weathernow.features.weather.domain.model.Weather
+import com.example.weathernow.features.weather.domain.model.AllWeather
+import com.example.weathernow.features.weather.domain.repository.WeatherRepository
+import com.example.weathernow.features.weather.domain.useCase.LocationUseCase
+import com.example.weathernow.features.weather.domain.useCase.WeatherUseCase
+import com.example.weathernow.features.weather.fake.FakeLocationRepository
+import com.example.weathernow.features.weather.fake.FakeWeatherRepository
 import com.example.weathernow.testWeather
-import com.example.weathernow.util.UiText
+import com.example.weathernow.util.UserMessage
 import io.mockk.clearAllMocks
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -15,15 +20,25 @@ import org.junit.Test
 
 
 class WeatherViewModelTest {
-    lateinit var viewModel: WeatherViewModel
+    private lateinit var viewModel: WeatherViewModel
+    private lateinit var locationRepository: FakeLocationRepository
+    private lateinit var locationUseCase: LocationUseCase
+    private lateinit var weatherRepository: WeatherRepository
+    private lateinit var weatherUseCase: WeatherUseCase
 
     @get:Rule
     val coroutineRule = CoroutineRule()
 
     @Before
     fun setUp() {
-        viewModel = WeatherViewModel(
+        locationRepository = FakeLocationRepository()
+        locationUseCase = LocationUseCase(locationRepository)
+        weatherRepository = FakeWeatherRepository()
+        weatherUseCase = WeatherUseCase(weatherRepository)
 
+        viewModel = WeatherViewModel(
+            locationUseCase = locationUseCase,
+            weatherUseCase = weatherUseCase
         )
     }
 
@@ -53,15 +68,18 @@ class WeatherViewModelTest {
                 assertEquals(
                     WeatherUiState(
                         isLoading = false,
-                        currentWeather = testWeather,
                         userMessage = null,
-                        fiveDayForecast = listOf(testWeather)
+                        allWeather = AllWeather(
+                            currentWeather = testWeather,
+                            fiveDayForecast = listOf(testWeather)
+                        )
                     ),
                     this,
                 )
             }
-        }
+            cancelAndIgnoreRemainingEvents()
 
+        }
     }
 
     @Test
@@ -77,15 +95,13 @@ class WeatherViewModelTest {
                 assertEquals(
                     WeatherUiState(
                         isLoading = false,
-                        currentWeather = Weather(),
-                        userMessage = UiText.DynamicString(
-                            "Weathernow requires location permission in order to serve you best, please grant them in the settings."
-                        ),
-                        fiveDayForecast = emptyList()
+                        userMessage = UserMessage.LocationPermissionRequired,
+                        allWeather = AllWeather()
                     ),
                     this,
                 )
             }
+            cancelAndIgnoreRemainingEvents()
         }
     }
 }
