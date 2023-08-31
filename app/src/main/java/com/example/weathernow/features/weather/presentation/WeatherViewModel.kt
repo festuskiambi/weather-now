@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weathernow.R
 import com.example.weathernow.features.weather.domain.model.Weather
+import com.example.weathernow.features.weather.domain.useCase.LocationUseCase
 import com.example.weathernow.util.Async
 import com.example.weathernow.util.UiText
 import com.example.weathernow.util.WhileUiSubscribed
@@ -19,9 +20,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
-
+     getLocationUseCase: LocationUseCase
 ) : ViewModel() {
-
     private val userMessageChannel = Channel<UiText>()
     val messages = userMessageChannel.receiveAsFlow()
 
