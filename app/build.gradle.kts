@@ -70,6 +70,9 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
 
+    // Location Service
+    implementation(libs.play.services.location)
+
     // Retrofit
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.kotlin.serialization)
