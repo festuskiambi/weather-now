@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kapt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.org.jetbrains.kotlin.android)
-
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -69,6 +69,12 @@ dependencies {
     implementation(libs.hilt.android.core)
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
+
+    // Retrofit
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.okhttp.logging)
 
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
