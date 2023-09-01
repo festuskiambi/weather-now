@@ -1,6 +1,7 @@
 package com.example.weathernow.features.weather.data.repository
 
 import com.example.weathernow.features.weather.data.remote.WeatherApi
+import com.example.weathernow.testCoordinate1
 import com.example.weathernow.testCurrentWeatherDto
 import com.example.weathernow.testFiveDayForecastDto
 import com.example.weathernow.util.Result
@@ -28,10 +29,20 @@ class WeatherRepositoryImplTest {
 
     @Test
     fun `get all weather data successFully`() = runBlocking {
-        coEvery { api.getCurrentWeather() } returns testCurrentWeatherDto
-        coEvery { api.getFiveDayForeCast() } returns testFiveDayForecastDto
+        coEvery {
+            api.getCurrentWeather(
+                testCoordinate1.latitude.toString(),
+                testCoordinate1.longitude.toString()
+            )
+        } returns testCurrentWeatherDto
+        coEvery {
+            api.getFiveDayForeCast(
+                testCoordinate1.latitude.toString(),
+                testCoordinate1.longitude.toString()
+            )
+        } returns testFiveDayForecastDto
 
-        val result = when (val res = repository.getWeather()) {
+        val result = when (val res = repository.getWeather(testCoordinate1)) {
             is Result.Success -> res.data
             else -> null
         }
@@ -41,7 +52,17 @@ class WeatherRepositoryImplTest {
             result?.fiveDayForecast?.firstOrNull()?.currTemp,
             testFiveDayForecastDto.dayWeatherDtoList?.firstOrNull()?.mainDto?.temp
         )
-        coVerify { api.getCurrentWeather() }
-        coVerify { api.getFiveDayForeCast() }
+        coVerify {
+            api.getCurrentWeather(
+                testCoordinate1.latitude.toString(),
+                testCoordinate1.longitude.toString()
+            )
+        }
+        coVerify {
+            api.getFiveDayForeCast(
+                testCoordinate1.latitude.toString(),
+                testCoordinate1.longitude.toString()
+            )
+        }
     }
 }

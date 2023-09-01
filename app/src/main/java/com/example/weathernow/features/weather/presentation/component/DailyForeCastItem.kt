@@ -35,11 +35,13 @@ fun DailyForecastItem(
                 .fillMaxWidth()
                 .weight(1f)
         ) {
-            Text(
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color.White,
-                text = "Tuesday",
-            )
+            weather.date?.let {
+                Text(
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color.White,
+                    text = it,
+                )
+            }
         }
         Column(
             modifier = Modifier

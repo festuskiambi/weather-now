@@ -8,5 +8,5 @@ class WeatherUseCase @Inject constructor(
     private val weatherRepository: WeatherRepository
 ) {
     suspend operator fun invoke(coordinate: Coordinate) =
-        weatherRepository.getWeather()
+        weatherRepository.getWeather(coordinate)
 }

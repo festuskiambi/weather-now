@@ -4,12 +4,14 @@ import com.example.weathernow.features.weather.data.remote.model.CurrentWeatherD
 import com.example.weathernow.features.weather.data.remote.model.DayWeatherDto
 import com.example.weathernow.features.weather.domain.model.Weather
 import com.example.weathernow.features.weather.domain.model.WeatherType
+import com.example.weathernow.util.DAY_NAME_IN_WEEK_PATTERN
+import com.example.weathernow.util.dateToString
 
 fun CurrentWeatherDto.toWeatherUiModel() = Weather(
-    currTemp = mainDto?.temp,
+    currTemp = mainDto?.temp?.toInt(),
     date = null,
-    minTemp = mainDto?.tempMin,
-    maxTemp = mainDto?.tempMax,
+    minTemp = mainDto?.tempMin?.toInt(),
+    maxTemp = mainDto?.tempMax?.toInt(),
     weatherType = when (weatherDto?.firstOrNull()?.main) {
         "Rain" -> WeatherType.Rain
         "Clouds" -> WeatherType.Cloudy
@@ -18,10 +20,15 @@ fun CurrentWeatherDto.toWeatherUiModel() = Weather(
 )
 
 fun DayWeatherDto.toWeatherUiModel() = Weather(
-    currTemp = mainDto?.temp,
-    date = dtTxt,
-    minTemp = mainDto?.tempMin,
-    maxTemp = mainDto?.tempMax,
+    currTemp = mainDto?.temp?.toInt(),
+    date = dtTxt?.let {
+        dateToString(
+            pattern = DAY_NAME_IN_WEEK_PATTERN,
+            dateString = it
+        )
+    },
+    minTemp = mainDto?.tempMin?.toInt(),
+    maxTemp = mainDto?.tempMax?.toInt(),
     weatherType = when (weatherDto?.firstOrNull()?.main) {
         "Rain" -> WeatherType.Rain
         "Clouds" -> WeatherType.Cloudy

@@ -87,8 +87,8 @@ class MainActivity : ComponentActivity() {
 
     private fun createLocationRequest() {
         mLocationRequest = LocationRequest()
-        mLocationRequest.interval = 5000
-        mLocationRequest.fastestInterval = 5000
+        mLocationRequest.interval = 300000
+        mLocationRequest.fastestInterval =300000
         mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
     }
     private fun buildLocationSettingsRequest() {
@@ -100,8 +100,8 @@ class MainActivity : ComponentActivity() {
     private fun startLocationUpdates() {
         val locationRequest = LocationRequest.create()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = 5000
-        locationRequest.fastestInterval = 5000
+        locationRequest.interval = 300000
+        locationRequest.fastestInterval = 300000
 
         val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
         builder.setAlwaysShow(true)

@@ -14,7 +14,7 @@ import com.example.weathernow.presentation.theme.superscriptBody
 
 @Composable
 fun CurrentDayForecastItem(
-    temp: Double?,
+    temp: Int?,
     label: String,
     modifier: Modifier = Modifier,
 ) {
