@@ -1,25 +1,53 @@
-# Weather Clean Architecture
+# Weathernow
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/404946db725448b89bcee7807e96a92f)](https://www.codacy.com/gh/hungnd-vnse/Weather-Clean-Architecture/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hungnd-vnse/Weather-Clean-Architecture&amp;utm_campaign=Badge_Grade)
+A weather android app that displays weather from [Open weather](https://openweathermap.org/) .
 
-A weather android app demonstrates Clean Architecture and is written in Kotlin.
+## Getting Started
 
-## Introduction
+## System requirement
+1. [Android studio](https://developer.android.com/studio) as the IDE
+1. The latest version of [Java](https://www.oracle.com/java/technologies/downloads/)
+1. An android [emulator](https://developer.android.com/studio/run/managing-avds) or a physical android device
 
-Follow Clean Architecture recommended for building robust, high-quality apps.
+> See this [tutorial](https://youtu.be/0zx_eFyHRU0)
 
+## Local set up
+1. You just need to [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) this project
+1. Launch android studio, select `open` and select the root folder `bongo-android`.
+1. [Build and run](https://developer.android.com/studio/run) the app
+
+## libraries used
+
+* [Retrofit](http://square.github.io/retrofit/)
+* [OkHttp](http://square.github.io/okhttp/)
+* [Mockk](https://github.com/mockk/mockk/)
+* [Turbine](https://github.com/cashapp/turbine/)
+* [KotlinxSerializationJson](hhttps://kotlinlang.org/docs/serialization.html)
+* [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+
+## Architecture
+This app is built with the Clean Architecture. Its broken down to features which contain the
+following layers: 
+### Presentation
 * User Interface built with [Jetpack Compose](https://developer.android.com/jetpack/compose)
 * A single-activity architecture
-* A **presentation layer** that contains a Compose screen (View) and a **ViewModel** per screen (or
+* Each feature contains a Compose screen **View** and a **ViewModel** per screen (or
   feature).
 * Reactive UIs using **Flow** and **Coroutines** for asynchronous operations.
-* A **data layer** with repositories and data sources (local using Room and a api service).
-* Dependency injection
-  using [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+### Screenshot
+<img src="./screenshots/screenshots.jpg" height="480"/>
 
-## Screenshot
+### Domain
+The Domain Layer has three primary purposes:
+* Abstraction of the Data Layer of the application
+* Providing a common set of Models
+* Providing a High-Level description of the applications primary functions based on problem domain analysis
 
-<img src="./screenshots/sunny.png" height="480"/>
-<img src="./screenshots/cloudy.png" height="480"/>
-<img src="./screenshots/rainy.png" height="480"/>
+### Data
+The Data Layer contains implementations of the data sources which are described in the repository package of the domain layer.
+
+
+
+
+
 
