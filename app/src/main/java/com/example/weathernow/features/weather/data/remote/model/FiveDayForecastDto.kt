@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class FiveDayForecastDto(
     @SerialName("list")
-    val list: List<DayWeatherDto>?,
+    val dayWeatherDtoList: List<DayWeatherDto>?,
 )

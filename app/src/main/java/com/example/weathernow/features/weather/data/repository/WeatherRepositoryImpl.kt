@@ -10,6 +10,6 @@ class WeatherRepositoryImpl @Inject constructor(
     private val api: WeatherApi,
 ): WeatherRepository {
     override suspend fun getWeather(): Result<AllWeather> {
-        TODO("Not yet implemented")
+
     }
 }
