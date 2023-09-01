@@ -9,11 +9,9 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.junit.jupiter.api.BeforeEach
 
 
 class WeatherRepositoryImplTest {
@@ -39,7 +37,11 @@ class WeatherRepositoryImplTest {
         }
 
         assertEquals(result?.currentWeather?.currTemp, testCurrentWeatherDto.mainDto?.temp)
+        assertEquals(
+            result?.fiveDayForecast?.firstOrNull()?.currTemp,
+            testFiveDayForecastDto.dayWeatherDtoList?.firstOrNull()?.mainDto?.temp
+        )
         coVerify { api.getCurrentWeather() }
-//        coVerify { api.getFiveDayForeCast() }
+        coVerify { api.getFiveDayForeCast() }
     }
 }
