@@ -1,5 +1,6 @@
 package com.example.weathernow.features.weather.data.repository
 
+import com.example.weathernow.features.weather.data.mapper.toWeatherUiModel
 import com.example.weathernow.features.weather.data.remote.WeatherApi
 import com.example.weathernow.features.weather.domain.model.AllWeather
 import com.example.weathernow.features.weather.domain.repository.WeatherRepository
@@ -8,8 +9,13 @@ import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(
     private val api: WeatherApi,
-): WeatherRepository {
+) : WeatherRepository {
     override suspend fun getWeather(): Result<AllWeather> {
-
+        val currentWeather = api.getCurrentWeather()
+        return Result.Success(
+            AllWeather(
+                currentWeather = currentWeather.toWeatherUiModel()
+            )
+        )
     }
 }

@@ -10,10 +10,10 @@ import com.example.weathernow.features.weather.domain.model.Weather
 import com.example.weathernow.features.weather.domain.model.WeatherType
 
 val testWeather = Weather(
-    currTemp = 24,
+    currTemp = 24.00,
     date = "29-08-2023",
-    minTemp = 16,
-    maxTemp = 27,
+    minTemp = 16.00,
+    maxTemp = 27.00,
     weatherType = WeatherType.Cloudy
 )
 val testCoordinate1 = Coordinate(-1.29987, 36.7724)

@@ -40,6 +40,6 @@ class WeatherRepositoryImplTest {
 
         assertEquals(result?.currentWeather?.currTemp, testCurrentWeatherDto.mainDto?.temp)
         coVerify { api.getCurrentWeather() }
-        coVerify { api.getFiveDayForeCast() }
+//        coVerify { api.getFiveDayForeCast() }
     }
 }

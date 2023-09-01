@@ -199,18 +199,18 @@ fun SunnyPreview() {
                     isLoading = false,
                     allWeather = AllWeather(
                         currentWeather = Weather(
-                            currTemp = 24,
+                            currTemp = 24.00,
                             date = "29-08-2023",
-                            minTemp = 16,
-                            maxTemp = 27,
+                            minTemp = 16.00,
+                            maxTemp = 27.00,
                             weatherType = WeatherType.Clear
                         ),
                         fiveDayForecast = listOf(
                             Weather(
-                                currTemp = 24,
+                                currTemp = 24.00,
                                 date = "29-08-2023",
-                                minTemp = 16,
-                                maxTemp = 27,
+                                minTemp = 16.00,
+                                maxTemp = 27.00,
                                 weatherType = WeatherType.Clear
                             )
                         )
@@ -231,18 +231,18 @@ fun CloudyPreview() {
                     isLoading = false,
                     allWeather = AllWeather(
                         currentWeather = Weather(
-                            currTemp = 24,
+                            currTemp = 24.00,
                             date = "29-08-2023",
-                            minTemp = 16,
-                            maxTemp = 27,
+                            minTemp = 16.00,
+                            maxTemp = 27.00,
                             weatherType = WeatherType.Cloudy
                         ),
                         fiveDayForecast = listOf(
                             Weather(
-                                currTemp = 24,
+                                currTemp = 24.00,
                                 date = "29-08-2023",
-                                minTemp = 16,
-                                maxTemp = 27,
+                                minTemp = 16.00,
+                                maxTemp = 27.00,
                                 weatherType = WeatherType.Cloudy
                             )
                         )
@@ -263,18 +263,18 @@ fun RainPreview() {
                     isLoading = false,
                     allWeather = AllWeather(
                         currentWeather = Weather(
-                            currTemp = 24,
+                            currTemp = 24.00,
                             date = "29-08-2023",
-                            minTemp = 16,
-                            maxTemp = 27,
+                            minTemp = 16.00,
+                            maxTemp = 27.00,
                             weatherType = WeatherType.Rain
                         ),
                         fiveDayForecast = listOf(
                             Weather(
-                                currTemp = 24,
+                                currTemp = 24.00,
                                 date = "29-08-2023",
-                                minTemp = 16,
-                                maxTemp = 27,
+                                minTemp = 16.00,
+                                maxTemp = 27.00,
                                 weatherType = WeatherType.Rain
                             )
                         )
