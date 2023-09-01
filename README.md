@@ -4,14 +4,14 @@ A weather android app that displays weather from [Open weather](https://openweat
 
 ## Getting Started
 
-## System requirement
+### System requirement
 1. [Android studio](https://developer.android.com/studio) as the IDE
 1. The latest version of [Java](https://www.oracle.com/java/technologies/downloads/)
 1. An android [emulator](https://developer.android.com/studio/run/managing-avds) or a physical android device
 
 > See this [tutorial](https://youtu.be/0zx_eFyHRU0)
 
-## Local set up
+### Local set up
 1. You just need to [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) this project
 1. Launch android studio, select `open` and select the root folder `bongo-android`.
 1. [Build and run](https://developer.android.com/studio/run) the app
