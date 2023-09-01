@@ -68,7 +68,6 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android.core)
     implementation(libs.androidx.hilt.navigation.compose)
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     kapt(libs.hilt.compiler)
 
     // Location Service
@@ -83,8 +82,6 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.junit)
-    testImplementation(libs.junit.jupiter)
-    testImplementation(libs.junit.jupiter)
     testImplementation(libs.turbine)
 
 
