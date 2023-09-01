@@ -1,5 +1,6 @@
 package com.example.weathernow.features.weather.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weathernow.features.weather.domain.model.AllWeather
@@ -64,7 +65,6 @@ class WeatherViewModel @Inject constructor(
                 userMessageChannel.send(
                     UserMessage.LocationPermissionRequired
                 )
-
             }
         }
     }
@@ -72,6 +72,7 @@ class WeatherViewModel @Inject constructor(
     fun getCurrentLocation() {
         viewModelScope.launch {
             val coordinate = handleGetLocationResult(locationUseCase.invoke())
+            Log.d("viewmodel", coordinate.toString())
             coordinate?.let {
                 val allWeather = handleWeatherResult(weatherUseCase.invoke(it))
 
