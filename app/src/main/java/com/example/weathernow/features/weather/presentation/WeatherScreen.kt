@@ -118,7 +118,7 @@ private fun CurrentWeatherContent(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(330.dp)
+            .height(340.dp)
     ) {
         currentWeather?.let { weather ->
             weather.weatherType?.let { weatherType ->
@@ -146,7 +146,7 @@ private fun CurrentWeatherContent(
                         },
                     )
                     Text(
-                        text = weatherType.weatherDesc,
+                        text = weatherType.weatherDesc.uppercase(),
                         style = MaterialTheme.typography.titleLarge,
                         color = Color.White,
                     )
@@ -165,7 +165,6 @@ private fun ForecastWeatherContent(
     LazyColumn(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp),
     ) {
         item {
             CurrentDayForecast(currentWeather = currentWeather)
@@ -199,11 +198,13 @@ private fun CurrentDayForecast(
             .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        CurrentDayForecastItem(currentWeather?.minTemp, "min")
+        CurrentDayForecastItem(
+            temp = currentWeather?.minTemp, "min", Alignment.Start
+        )
 
-        CurrentDayForecastItem(currentWeather?.minTemp, "current")
+        CurrentDayForecastItem(currentWeather?.minTemp, "current", Alignment.CenterHorizontally)
 
-        CurrentDayForecastItem(currentWeather?.minTemp, "max")
+        CurrentDayForecastItem(currentWeather?.minTemp, "max", Alignment.End)
     }
 }
 

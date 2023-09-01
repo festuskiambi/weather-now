@@ -11,16 +11,16 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import com.example.weathernow.presentation.theme.superscriptBody
 
-
 @Composable
 fun CurrentDayForecastItem(
     temp: Int?,
     label: String,
+    horizontalAlignment: Alignment.Horizontal,
     modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = horizontalAlignment
     ) {
         Text(
             style = MaterialTheme.typography.bodyLarge,
