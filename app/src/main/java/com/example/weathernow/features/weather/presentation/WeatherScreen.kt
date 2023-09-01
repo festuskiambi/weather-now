@@ -44,6 +44,7 @@ import com.example.weathernow.features.weather.domain.model.Weather
 import com.example.weathernow.features.weather.domain.model.WeatherType
 import com.example.weathernow.features.weather.presentation.component.CurrentDayForecastItem
 import com.example.weathernow.features.weather.presentation.component.DailyForecastItem
+import com.example.weathernow.presentation.components.CircularIndeterminateProgressBar
 import com.example.weathernow.presentation.theme.WeatherNowTheme
 import com.example.weathernow.presentation.theme.superscriptTitle
 
@@ -86,22 +87,26 @@ fun WeatherScreenContent(
     uiState: WeatherUiState,
 ) {
     val currentWeather = uiState.allWeather?.currentWeather
-    val backgroundColor = currentWeather?.weatherType?.backgroundColor ?: R.color.clear
+    val backgroundColor = currentWeather?.weatherType?.backgroundColor ?: R.color.white
     val fiveDayForecast = uiState.allWeather?.fiveDayForecast
-
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(color = colorResource(id = backgroundColor))
-    ) {
-        CurrentWeatherContent(
-            currentWeather = currentWeather
-        )
-        ForecastWeatherContent(
-            modifier = Modifier.weight(1f),
-            fiveDayForecast = fiveDayForecast,
-            currentWeather = currentWeather
-        )
+    Box(modifier = modifier) {
+        if (uiState.isLoading == false) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = colorResource(id = backgroundColor))
+            ) {
+                CurrentWeatherContent(
+                    currentWeather = currentWeather
+                )
+                ForecastWeatherContent(
+                    modifier = Modifier.weight(1f),
+                    fiveDayForecast = fiveDayForecast,
+                    currentWeather = currentWeather
+                )
+            }
+        }
+        CircularIndeterminateProgressBar(uiState.isLoading == true)
     }
 }
 
